@@ -17,7 +17,7 @@ public class MovieFinderTest {
         assertEquals(225, result.size());
 	}
 	
-	static void assertEquals(long expected, long actual) {
+	static void assertEquals(long expected, long actual) { //기대값과 실제값을 비교하여 서로 다르다면 예외를 띄움
 		if (expected != actual) {
 			throw new RuntimeException(String.format("actual(%d) is different from the expected(%d)", actual, expected));			
 		}
