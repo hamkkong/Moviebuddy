@@ -4,16 +4,19 @@ import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import moviebuddy.MoviebuddyFactory;
+import moviebuddy.MovieBuddyFactory;
 
 /**
  * @author springrunner.kr@gmail.com
  */
 public class MovieFinderTest {
 	
-	final MoviebuddyFactory movieBuddyFactory = new MoviebuddyFactory();
-	final MovieFinder movieFinder = movieBuddyFactory.movieFinder();  //전달 1(중복)
+	final ApplicationContext applicationContext = 
+			new AnnotationConfigApplicationContext(MovieBuddyFactory.class);
+	final MovieFinder movieFinder = applicationContext.getBean(MovieFinder.class);  //전달 1(중복)
 	@Test
 	void NotEmpty_directedBy() {
 		List<Movie> movies = movieFinder.directedBy("Michael Bay");
