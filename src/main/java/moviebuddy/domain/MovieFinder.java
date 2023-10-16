@@ -6,7 +6,12 @@ import java.util.stream.Collectors;
 
 public class MovieFinder {
 	
-	private MovieReader movieReader = new CSVMovieReader(); // CSVMovieReader 라는 인터페이스 상속자를 통해 객체를 생성
+	private final MovieReader movieReader;
+	 
+	public MovieFinder(MovieReader movieReader) {  // 생성자를 만들어 객체를 외부에서 주입
+		this.movieReader = Objects.requireNonNull(movieReader); // 이 생성자는 이 클래스에 메타데이터의 성질을 전달함
+	}
+	
 
 	 /**
      * 저장된 영화 목록에서 감독으로 영화를 검색한다.

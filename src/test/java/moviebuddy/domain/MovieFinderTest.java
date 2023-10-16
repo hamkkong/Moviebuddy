@@ -2,25 +2,28 @@ package moviebuddy.domain;
 
 import java.util.List;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import moviebuddy.MoviebuddyFactory;
+
 /**
  * @author springrunner.kr@gmail.com
  */
 public class MovieFinderTest {
-
-	public static void main(String[] args) {
-		MovieFinder movieFinder = new MovieFinder();
-		
-		List<Movie> result = movieFinder.directedBy("Michael Bay");
-		assertEquals(3, result.size());
-
-        result = movieFinder.releasedYearBy(2015);
-        assertEquals(225, result.size());
-	}
 	
-	static void assertEquals(long expected, long actual) { //기대값과 실제값을 비교하여 서로 다르다면 예외를 띄움
-		if (expected != actual) {
-			throw new RuntimeException(String.format("actual(%d) is different from the expected(%d)", actual, expected));			
-		}
+	final MoviebuddyFactory movieBuddyFactory = new MoviebuddyFactory();
+	final MovieFinder movieFinder = movieBuddyFactory.movieFinder();  //전달 1(중복)
+	@Test
+	void NotEmpty_directedBy() {
+		List<Movie> movies = movieFinder.directedBy("Michael Bay");
+		Assertions.assertEquals(3,movies.size());
+		
+	}
+	@Test
+	void NotEmpty_ReleasedYearBy() {
+		List<Movie> movies = movieFinder.releasedYearBy(2015);
+		Assertions.assertEquals(225, movies.size());
 	}
 	
 }

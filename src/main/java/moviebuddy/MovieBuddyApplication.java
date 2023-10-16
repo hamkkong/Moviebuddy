@@ -35,7 +35,8 @@ public class MovieBuddyApplication {
      */
 
     public void run(String[] args) throws Exception {
-    	final MovieFinder movieFinder = new MovieFinder();
+    	final MoviebuddyFactory movieBuddyFactory = new MoviebuddyFactory();
+    	final MovieFinder movieFinder = movieBuddyFactory.movieFinder(); //전달2 (중복)
         final AtomicBoolean running = new AtomicBoolean(true);
         final BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
         final PrintWriter output = new PrintWriter(System.out, false);
