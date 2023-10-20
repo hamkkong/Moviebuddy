@@ -5,14 +5,16 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MovieFinder {
 	
 	private final MovieReader movieReader;
+	
 	 @Autowired   // 생성자 위에서만 사용됨 
-	public MovieFinder(MovieReader movieReader) {  // 생성자를 만들어 객체를 외부에서 주입
+	public MovieFinder(@Qualifier("CSVMovieReader") MovieReader movieReader) {  // 생성자를 만들어 객체를 외부에서 주입
 		this.movieReader = Objects.requireNonNull(movieReader); // 이 생성자는 이 클래스에 메타데이터의 성질을 전달함
 	}
 	

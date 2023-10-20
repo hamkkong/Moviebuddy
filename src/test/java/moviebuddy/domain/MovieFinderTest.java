@@ -4,19 +4,31 @@ import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import moviebuddy.MovieBuddyFactory;
 
 /**
  * @author springrunner.kr@gmail.com
  */
-public class MovieFinderTest {
+@SpringJUnitConfig(MovieBuddyFactory.class)
+//@ExtendWith(SpringExtension.class)
+//@ContextConfiguration(classes = MovieBuddyFactory.class) // 해당Bean을 사용해 컨테이너 구성 
+public class MovieFinderTest {	
+
+	@Autowired MovieFinder movieFinder;  //가능하면 사용하지 않는 것을 추천 
 	
-	final ApplicationContext applicationContext = 
-			new AnnotationConfigApplicationContext(MovieBuddyFactory.class);
-	final MovieFinder movieFinder = applicationContext.getBean(MovieFinder.class);  //전달 1(중복)
+//	@Autowired
+//	MovieFinderTest(MovieFinder movieFinder){  //생성자를 통한 의존관계 주입 
+//		this.movieFinder = movieFinder;
+//	}
+	 
+//	@Autowired
+//	void setMovieFinderTest(MovieFinder movieFinder) { // 세터를 사용
+//		this.movieFinder = movieFinder;
+//	}
+	
 	@Test
 	void NotEmpty_directedBy() {
 		List<Movie> movies = movieFinder.directedBy("Michael Bay");
