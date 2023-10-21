@@ -5,14 +5,19 @@ import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import moviebuddy.MovieBuddyFactory;
+import moviebuddy.MovieBuddyProfile;
 
 /**
  * @author springrunner.kr@gmail.com
  */
+@ActiveProfiles(MovieBuddyProfile.CSV_MODE)
 @SpringJUnitConfig(MovieBuddyFactory.class)
+
+
 //@ExtendWith(SpringExtension.class)
 //@ContextConfiguration(classes = MovieBuddyFactory.class) // 해당Bean을 사용해 컨테이너 구성 
 public class MovieFinderTest {	
