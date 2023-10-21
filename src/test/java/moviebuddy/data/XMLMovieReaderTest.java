@@ -11,19 +11,17 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import moviebuddy.MovieBuddyFactory;
 import moviebuddy.MovieBuddyProfile;
 import moviebuddy.domain.Movie;
-import moviebuddy.domain.MovieFinder;
 
 @ActiveProfiles(MovieBuddyProfile.XML_MODE)
 @SpringJUnitConfig(MovieBuddyFactory.class) 
-public class JAXBMovieReaderTest {
+public class XMLMovieReaderTest {
 	
-	@Autowired MovieFinder movieFinder; 
+	@Autowired XMLMovieReader movieReader; 
 	
 	@Test
 	void NotEmpty_LoadedMovies() {
-		JAXBMovieReader movieReader = new JAXBMovieReader();
 		
-		List<Movie> movies = movieReader.loadMovies();
+		List<Movie>movies = movieReader.loadMovies();
 		// movies.size() => XML 문서에 등록된 영화 수와 동일한가?
 		Assertions.assertEquals(1375, movies.size());
 	}
