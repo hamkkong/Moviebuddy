@@ -4,7 +4,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Profile;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
+
+import moviebuddy.data.CSVMovieReader;
 
 @Configuration
 @ComponentScan(basePackages = {"moviebuddy"})
@@ -28,5 +31,15 @@ public class MovieBuddyFactory {
 	@Configuration
 	static class DataSourceModuleConfig{
 		
+		@Profile(MovieBuddyProfile.CSV_MODE)
+		@Bean
+		public CSVMovieReader CSVMovieReader() {
+			CSVMovieReader movieReader = new CSVMovieReader();
+			movieReader.setMetadata("movie_metadata.csv");
+			
+			return movieReader;
+		
+		}
 	}
+
 }
