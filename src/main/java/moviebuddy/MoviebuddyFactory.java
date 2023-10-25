@@ -1,5 +1,8 @@
 package moviebuddy;
 
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -33,7 +36,7 @@ public class MovieBuddyFactory {
 		
 		@Profile(MovieBuddyProfile.CSV_MODE)
 		@Bean
-		public CSVMovieReader CSVMovieReader() {
+		public CSVMovieReader CSVMovieReader() throws FileNotFoundException,URISyntaxException {
 			CSVMovieReader movieReader = new CSVMovieReader();
 			movieReader.setMetadata("movie_metadata.csv");
 			
